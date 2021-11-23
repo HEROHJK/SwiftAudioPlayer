@@ -1,7 +1,7 @@
 import XCTest
-@testable import AudioPlayer
+@testable import SwiftAudioPlayer
 
-final class AudioPlayerTests: XCTestCase {
+final class SwiftAudioPlayerTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct

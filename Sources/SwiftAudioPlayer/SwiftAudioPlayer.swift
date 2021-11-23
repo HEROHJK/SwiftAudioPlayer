@@ -5,7 +5,7 @@ import HeLogger
 
 let timeScale: Int32 = 60_000
 
-public class AudioPlayer {
+public class SwiftAudioPlayer {
     var player: AVPlayer?
     var state: PlayerState = .unload
     var rate: Float = 1.0
