@@ -1,10 +1,3 @@
-//
-//  EasyRemoteCenter.h
-//  EasyRemoteCenter
-//
-//  Created by 오디언 on 2021/11/24.
-//
-
 #import <Foundation/Foundation.h>
 
 //! Project version number for EasyRemoteCenter.

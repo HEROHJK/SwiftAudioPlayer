@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  testApp
-//
-//  Created by 오디언 on 2021/11/24.
-//
-
 // swiftlint:disable line_length unused_optional_binding
 import UIKit
 
