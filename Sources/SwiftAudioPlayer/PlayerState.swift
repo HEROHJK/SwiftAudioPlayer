@@ -12,4 +12,5 @@ public enum PlayerState {
     case play
     case pause
     case stop
+    case finish
 }

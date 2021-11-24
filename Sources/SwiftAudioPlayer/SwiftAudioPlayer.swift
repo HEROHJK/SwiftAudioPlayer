@@ -12,6 +12,13 @@ public class SwiftAudioPlayer {
     var duration: Int = 0
     var subjects = AudioPlayerSubject()
     var playerTimeObserver: Any?
+    var currentTime: Int {
+        if self.state != .unload,
+           let timeDouble = self.player?.currentItem?.currentTime().seconds {
+            return Int(timeDouble)
+        }
+        return 0
+    }
     
     func initItem(isLocal: Bool, urlString: String, metaData: AudioMetaData? = nil, seek: Int = 0, duration: Int? = nil) {
         unload()
@@ -40,12 +47,21 @@ public class SwiftAudioPlayer {
         changeState(state: .load)
         
         self.playerTimeObserver = self.player?.addProgressObserver { time in
-            self.subjects.progressUpdate.onNext((Int(time), 0))
+            self.subjects.currentTimeUpdate.onNext((Int(time)))
         }
+        
+        NotificationCenter
+            .default
+            .addObserver(
+                self,
+                selector: #selector(playFinished(note:)),
+                name: .AVPlayerItemDidPlayToEndTime,
+                object: nil
+            )
     }
     
     func play() {
-        if state == .load || state == .pause || state == .stop {
+        if state != .unload, state != .play {
             self.player?.play()
             changeState(state: .play)
         }
@@ -59,7 +75,7 @@ public class SwiftAudioPlayer {
     }
     
     func stop() {
-        if state == .load || state == .pause || state == .stop {
+        if state != .unload, state != .stop {
             self.player?.pause()
             self.player?.seek(to: CMTimeMake(value: 0, timescale: timeScale))
             changeState(state: .stop)
@@ -75,14 +91,25 @@ public class SwiftAudioPlayer {
                 self.playerTimeObserver = nil
             }
             
+            NotificationCenter.default.removeObserver(self)
+            
             changeState(state: .unload)
         }
+    }
+    
+    @objc
+    func playFinished(note: NSNotification) {
+        changeState(state: .finish)
     }
     
     func setRate(rate: Float) {
         if state != .unload {
             self.player?.rate = rate
         }
+    }
+    
+    func setSeek(_ seekTime: Double) {
+        self.player?.seek(to: CMTimeMake(value: CMTimeValue(seekTime), timescale: timeScale))
     }
     
     private func makeAVPlayerItem(_ isLocal: Bool, _ urlString: String) -> AVPlayerItem? {
