@@ -20,6 +20,8 @@ public class SwiftAudioPlayer {
         return 0
     }
     
+    public init() { }
+    
     func initItem(isLocal: Bool, urlString: String, metaData: AudioMetaData? = nil, seek: Int = 0, duration: Int? = nil) {
         unload()
         
