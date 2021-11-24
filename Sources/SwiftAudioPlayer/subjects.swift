@@ -1,7 +1,7 @@
 import Foundation
 import RxSwift
 
-class AudioPlayerSubject {
-    var stateChange = PublishSubject<PlayerState>()
-    var currentTimeUpdate = PublishSubject<(Int)>()
+public class AudioPlayerSubject {
+    public var stateChange = PublishSubject<PlayerState>()
+    public var currentTimeUpdate = PublishSubject<(Int)>()
 }

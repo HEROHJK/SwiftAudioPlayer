@@ -6,13 +6,13 @@ import HeLogger
 let timeScale: Int32 = 60_000
 
 public class SwiftAudioPlayer {
-    var player: AVPlayer?
-    var state: PlayerState = .unload
-    var rate: Float = 1.0
-    var duration: Int = 0
-    var subjects = AudioPlayerSubject()
-    var playerTimeObserver: Any?
-    var currentTime: Int {
+    public var player: AVPlayer?
+    public var state: PlayerState = .unload
+    public var rate: Float = 1.0
+    public var duration: Int = 0
+    public var subjects = AudioPlayerSubject()
+    public var playerTimeObserver: Any?
+    public var currentTime: Int {
         if self.state != .unload,
            let timeDouble = self.player?.currentItem?.currentTime().seconds {
             return Int(timeDouble)
@@ -22,7 +22,7 @@ public class SwiftAudioPlayer {
     
     public init() { }
     
-    func initItem(isLocal: Bool, urlString: String, metaData: AudioMetaData? = nil, seek: Int = 0, duration: Int? = nil) {
+    public func initItem(isLocal: Bool, urlString: String, metaData: AudioMetaData? = nil, seek: Int = 0, duration: Int? = nil) {
         unload()
         
         guard let item = makeAVPlayerItem(isLocal, urlString) else {
@@ -62,21 +62,21 @@ public class SwiftAudioPlayer {
             )
     }
     
-    func play() {
+    public func play() {
         if state != .unload, state != .play {
             self.player?.play()
             changeState(state: .play)
         }
     }
     
-    func pause() {
+    public func pause() {
         if state == .play {
             self.player?.pause()
             changeState(state: .pause)
         }
     }
     
-    func stop() {
+    public func stop() {
         if state != .unload, state != .stop {
             self.player?.pause()
             self.player?.seek(to: CMTimeMake(value: 0, timescale: timeScale))
@@ -84,7 +84,7 @@ public class SwiftAudioPlayer {
         }
     }
     
-    func unload() {
+    public func unload() {
         if state != .unload {
             self.player?.replaceCurrentItem(with: nil)
             
@@ -100,17 +100,17 @@ public class SwiftAudioPlayer {
     }
     
     @objc
-    func playFinished(note: NSNotification) {
+    private func playFinished(note: NSNotification) {
         changeState(state: .finish)
     }
     
-    func setRate(rate: Float) {
+    public func setRate(rate: Float) {
         if state != .unload {
             self.player?.rate = rate
         }
     }
     
-    func setSeek(_ seekTime: Double) {
+    public func setSeek(_ seekTime: Double) {
         self.player?.seek(to: CMTimeMake(value: CMTimeValue(seekTime), timescale: timeScale))
     }
     
@@ -128,7 +128,7 @@ public class SwiftAudioPlayer {
         return item
     }
     
-    func changeState(state: PlayerState) {
+    private func changeState(state: PlayerState) {
         if self.state != state {
             self.state = state
             subjects.stateChange.onNext(state)

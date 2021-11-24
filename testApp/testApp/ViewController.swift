@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        player.subjects.currentTimeUpdate
     }
 
     @IBAction func streamingPlay(_ sender: Any) {

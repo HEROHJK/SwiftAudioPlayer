@@ -1,6 +1,6 @@
 import Foundation
 
-struct AudioMetaData {
+public struct AudioMetaData {
     let imageData: Data
     let title: String
     let subTitle: String
