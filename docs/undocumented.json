@@ -1,0 +1,54 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/audien/Documents/PersonalProjects/SwiftAudioPlayer/Sources/SwiftAudioPlayer/AudioMetaData.swift",
+      "line": 3,
+      "symbol": "AudioMetaData",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/audien/Documents/PersonalProjects/SwiftAudioPlayer/Sources/SwiftAudioPlayer/PlayerState.swift",
+      "line": 10,
+      "symbol": "PlayerState.unload",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/audien/Documents/PersonalProjects/SwiftAudioPlayer/Sources/SwiftAudioPlayer/PlayerState.swift",
+      "line": 11,
+      "symbol": "PlayerState.load",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/audien/Documents/PersonalProjects/SwiftAudioPlayer/Sources/SwiftAudioPlayer/PlayerState.swift",
+      "line": 12,
+      "symbol": "PlayerState.play",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/audien/Documents/PersonalProjects/SwiftAudioPlayer/Sources/SwiftAudioPlayer/PlayerState.swift",
+      "line": 13,
+      "symbol": "PlayerState.pause",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/audien/Documents/PersonalProjects/SwiftAudioPlayer/Sources/SwiftAudioPlayer/PlayerState.swift",
+      "line": 14,
+      "symbol": "PlayerState.stop",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/audien/Documents/PersonalProjects/SwiftAudioPlayer/Sources/SwiftAudioPlayer/PlayerState.swift",
+      "line": 15,
+      "symbol": "PlayerState.finish",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/audien/Documents/PersonalProjects/SwiftAudioPlayer"
+}

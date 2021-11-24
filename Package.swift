@@ -9,10 +9,9 @@ let package = Package(
         .iOS(.v12)
     ],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "SwiftAudioPlayer",
-            targets: ["SwiftAudioPlayer"]),
+            name: "SwiftAudioPlayer", targets: ["SwiftAudioPlayer"]),
+        .library(name: "EasyRemoteCenter", targets: ["EasyRemoteCenter"])
     ],
     dependencies: [
         .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.2.0")),
@@ -22,6 +21,8 @@ let package = Package(
         .target(
             name: "SwiftAudioPlayer",
             dependencies: ["RxSwift", "HeLogger"]),
+        .target(name: "EasyRemoteCenter",
+                dependencies: ["SwiftAudioPlayer", "RxSwift", "HeLogger"]),
         .testTarget(
             name: "SwiftAudioPlayerTests",
             dependencies: ["SwiftAudioPlayer"]),

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AudioPlayerObserver Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/AudioPlayerObserver" class="dashAnchor"></a>
+
+    <a title="AudioPlayerObserver Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          SwiftAudioPlayer Docs
+        </a>
+         (75% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/HEROHJK/SwiftAudioPlayer">
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">SwiftAudioPlayer Reference</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      AudioPlayerObserver Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AudioPlayerObserver.html">AudioPlayerObserver</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SwiftAudioPlayer.html">SwiftAudioPlayer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PlayerState.html">PlayerState</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:16SwiftAudioPlayer0B8MetaDataV">AudioMetaData</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>AudioPlayerObserver</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AudioPlayerObserver</span></code></pre>
+
+                </div>
+              </div>
+            <p>오디오 플레이어용 옵저버들</p>
+
+<p>외부에서 발송(onNext)을 방지하고, 순수한 읽기전용 구독만을 지원하기 위해,
+내부에서는 subject를 외부에서는 observable을 이용함.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayer0bC8ObserverC11stateChange02RxA010ObservableCyAA0C5StateOGvp"></a>
+                    <a name="//apple_ref/swift/Property/stateChange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayer0bC8ObserverC11stateChange02RxA010ObservableCyAA0C5StateOGvp">stateChange</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>외부에 상태변화를 전달해주는 Observable</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">stateChange</span><span class="p">:</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/PlayerState.html">PlayerState</a></span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayer0bC8ObserverC17currentTimeUpdate02RxA010ObservableCySiGvp"></a>
+                    <a name="//apple_ref/swift/Property/currentTimeUpdate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayer0bC8ObserverC17currentTimeUpdate02RxA010ObservableCySiGvp">currentTimeUpdate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>외부에 Progress용으로 현재 재생 시각을 전달해주는 Observable</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">currentTimeUpdate</span><span class="p">:</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayer0bC8ObserverC14durationChange02RxA010ObservableCySiGvp"></a>
+                    <a name="//apple_ref/swift/Property/durationChange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayer0bC8ObserverC14durationChange02RxA010ObservableCySiGvp">durationChange</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>외부에 오디오 길이를 전달해주는 Observable
+스트리밍 파일의 경우, 적재한 직후에 길이를 알수가 없기 때문에 이용</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">durationChange</span><span class="p">:</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayer0bC8ObserverC10rateChange02RxA010ObservableCySfGvp"></a>
+                    <a name="//apple_ref/swift/Property/rateChange" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayer0bC8ObserverC10rateChange02RxA010ObservableCySfGvp">rateChange</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>외부에 배속이 바뀌었을 때, 바뀐 배속을 전달해주는 Observable</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rateChange</span><span class="p">:</span> <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">Float</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2021 <a class="link" href="https://herohjk.com" target="_blank" rel="external noopener">herohjk</a>. All rights reserved. (Last updated: 2021-11-24)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>

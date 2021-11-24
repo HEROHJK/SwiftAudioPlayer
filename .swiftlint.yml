@@ -1,0 +1,8 @@
+# https://github.com/HEROHJK/SwiftStyleGuide
+parent_config: https://raw.githubusercontent.com/HEROHJK/SwiftStyleGuide/master/lint.yml
+
+included:
+- Sources
+
+excluded:
+- Package.swift

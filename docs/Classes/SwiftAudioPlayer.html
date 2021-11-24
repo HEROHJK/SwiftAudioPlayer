@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SwiftAudioPlayer Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/SwiftAudioPlayer" class="dashAnchor"></a>
+
+    <a title="SwiftAudioPlayer Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          SwiftAudioPlayer Docs
+        </a>
+         (75% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/HEROHJK/SwiftAudioPlayer">
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">SwiftAudioPlayer Reference</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      SwiftAudioPlayer Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AudioPlayerObserver.html">AudioPlayerObserver</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SwiftAudioPlayer.html">SwiftAudioPlayer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PlayerState.html">PlayerState</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:16SwiftAudioPlayer0B8MetaDataV">AudioMetaData</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>SwiftAudioPlayer</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SwiftAudioPlayer</span></code></pre>
+
+                </div>
+              </div>
+            <p>SwiftAudioPlayer</p>
+
+<p>AVPlayer의 기본적인 스트리밍파일, 오디오파일을 지원</p>
+
+<p>0.5~2.0 까지의 배속 조절</p>
+
+<p>구간 이동 기능</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC5stateAA0C5StateOvp"></a>
+                    <a name="//apple_ref/swift/Property/state" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC5stateAA0C5StateOvp">state</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>플레이어의 현재 상태</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Enums/PlayerState.html">PlayerState</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC4rateSfvp"></a>
+                    <a name="//apple_ref/swift/Property/rate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC4rateSfvp">rate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>플레이어의 현재 배속</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rate</span><span class="p">:</span> <span class="kt">Float</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC8durationSivp"></a>
+                    <a name="//apple_ref/swift/Property/duration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC8durationSivp">duration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>플레이어에 현재 적재되어 있는 오디오의 길이</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC9observersAA0bC8ObserverCvp"></a>
+                    <a name="//apple_ref/swift/Property/observers" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC9observersAA0bC8ObserverCvp">observers</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>플레이어에서 지원하는 Observables</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">observers</span><span class="p">:</span> <span class="kt"><a href="../Classes/AudioPlayerObserver.html">AudioPlayerObserver</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC11currentTimeSivp"></a>
+                    <a name="//apple_ref/swift/Property/currentTime" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC11currentTimeSivp">currentTime</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>플레이어에 적재되어 있는 오디오의 현재 구간</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">currentTime</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAACABycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAACABycfc">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>기본 생성자</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Control"></a>
+                <a name="//apple_ref/swift/Section/Control" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Control"></a>
+                  <h3 class="section-name"><span>Control</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC4playyyF"></a>
+                    <a name="//apple_ref/swift/Method/play()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC4playyyF">play()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>오디오 재생
+오디오가 로드되어 있을 때만 동작.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">play</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC5pauseyyF"></a>
+                    <a name="//apple_ref/swift/Method/pause()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC5pauseyyF">pause()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>오디오 일시중지
+재생중에만 동작</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">pause</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC4stopyyF"></a>
+                    <a name="//apple_ref/swift/Method/stop()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC4stopyyF">stop()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>오디오 중지
+일시중지 + 시간 0으로 초기화</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">stop</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC6unloadyyF"></a>
+                    <a name="//apple_ref/swift/Method/unload()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC6unloadyyF">unload()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>오디오 초기화
+AVPleyer의 데이터들을 초기화.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">unload</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC7setRate4rateySf_tF"></a>
+                    <a name="//apple_ref/swift/Method/setRate(rate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC7setRate4rateySf_tF">setRate(rate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>배속 설정</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setRate</span><span class="p">(</span><span class="nv">rate</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>배속 값. (0.5 ~ 2.0 사이)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC7setSeekyySdF"></a>
+                    <a name="//apple_ref/swift/Method/setSeek(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC7setSeekyySdF">setSeek(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>이동 설정
+설정한 구간으로 이동</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setSeek</span><span class="p">(</span><span class="n">_</span> <span class="nv">seekTime</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>seekTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>이동할 시간</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/initial"></a>
+                <a name="//apple_ref/swift/Section/initial" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/initial"></a>
+                  <h3 class="section-name"><span>initial</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16SwiftAudioPlayerAAC8initItem7isLocal9urlString8metaData4seek8durationySb_SSAA0b4MetaK0VSgS2iSgtF"></a>
+                    <a name="//apple_ref/swift/Method/initItem(isLocal:urlString:metaData:seek:duration:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16SwiftAudioPlayerAAC8initItem7isLocal9urlString8metaData4seek8durationySb_SSAA0b4MetaK0VSgS2iSgtF">initItem(isLocal:<wbr>urlString:<wbr>metaData:<wbr>seek:<wbr>duration:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>오디오 적재</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">initItem</span><span class="p">(</span>
+    <span class="nv">isLocal</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span>
+    <span class="nv">urlString</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">metaData</span><span class="p">:</span> <span class="kt"><a href="../Structs.html#/s:16SwiftAudioPlayer0B8MetaDataV">AudioMetaData</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">seek</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nv">duration</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isLocal</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>로컬 or 스트리밍 여부</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>urlString</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>오디오 경로 (스트리밍 url 주소 or 로컬 주소)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>metaData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>메타데이터 (개발중)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>seek</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>0부터 시작하지 않을 때 설정</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>duration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>전체 구간 강제 설정(미리듣기용)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2021 <a class="link" href="https://herohjk.com" target="_blank" rel="external noopener">herohjk</a>. All rights reserved. (Last updated: 2021-11-24)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>

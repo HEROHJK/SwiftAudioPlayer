@@ -96,3 +96,6 @@ xcuserdata
 
 
 # End of https://www.toptal.com/developers/gitignore/api/swiftpm,swift,swiftpackagemanager
+
+# SwiftLint Remote Config Cache
+.swiftlint/RemoteConfigCache
