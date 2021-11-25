@@ -177,12 +177,14 @@ extension SwiftAudioPlayer {
     ) {
         unload()
         
-        guard let item = makeAVPlayerItem(urlString) else {
+        guard let url = makePlayerItemURL(urlString) else {
             changeState(state: .unload)
             return
         }
         
-        self.player = AVPlayer(playerItem: item)
+        let asset = AVAsset(url: url)
+        
+        self.player = AVPlayer(playerItem: AVPlayerItem(asset: asset))
         
         let cmTime = CMTimeMake(value: Int64(seek), timescale: timeScale)
         self.player?.seek(to: cmTime)
@@ -191,7 +193,12 @@ extension SwiftAudioPlayer {
             self._duration = duration
             self.observers.durationChangeSubject.onNext(Int(duration))
         } else {
-            self._duration = 0
+            self._duration = Int(Float(asset.duration.value) / Float(asset.duration.timescale))
+            if self.duration < 1 {
+                changeState(state: .unload)
+                return
+            }
+            observers.durationChangeSubject.onNext(self.duration)
         }
         
         firstSetup()
@@ -199,13 +206,6 @@ extension SwiftAudioPlayer {
         changeState(state: .load)
         
         self.playerTimeObserver = self.player?.addProgressObserver { [weak self] time in
-            if self?._duration == 0 {
-                if let duration = self?.player?.currentItem?.duration.seconds,
-                   !duration.isNaN {
-                    self?._duration = Int(duration)
-                    self?.observers.durationChangeSubject.onNext(Int(duration))
-                }
-            }
             self?.observers.currentTimeUpdateSubject.onNext(Int(time))
         }
         
@@ -213,13 +213,13 @@ extension SwiftAudioPlayer {
             .default
             .addObserver(
                 self,
-                selector: #selector(playFinished(note:)),
+                selector: #selector(playFinished),
                 name: .AVPlayerItemDidPlayToEndTime,
                 object: nil
             )
     }
     
-    private func makeAVPlayerItem(_ urlString: String) -> AVPlayerItem? {
+    private func makePlayerItemURL(_ urlString: String) -> URL? {
         let url: URL?
         if Array(urlString)[0].isLetter {
             url = URL(string: urlString)
@@ -236,9 +236,7 @@ extension SwiftAudioPlayer {
             return nil
         }
         
-        let item = AVPlayerItem(asset: AVAsset(url: url))
-        
-        return item
+        return url
     }
 }
 
