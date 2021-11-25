@@ -36,6 +36,8 @@ public class SwiftAudioPlayer {
     private var _state: PlayerState = .unload
     private var _rate: Float = 1.0
     private var _duration: Int = 0
+    private var setup = false
+    private var interrupt = false
     
     /// 기본 생성자
     public init() {
@@ -44,6 +46,33 @@ public class SwiftAudioPlayer {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func firstSetup() {
+        if setup { return }
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        try? audioSession.setCategory(.playback)
+        try? audioSession.setCategory(AVAudioSession.Category.playback, options: .duckOthers)
+        try? audioSession.setMode(.default)
+        try? audioSession.setActive(true)
+        
+        NotificationCenter.default
+            .addObserver(
+                self,
+                selector: #selector(handleAudioSessionInterruption),
+                name: AVAudioSession.interruptionNotification,
+                object: audioSession
+            )
+        
+        NotificationCenter.default
+            .addObserver(
+                self,
+                selector: #selector(routeChange),
+                name: AVAudioSession.routeChangeNotification,
+                object: audioSession
+            )
     }
     
     @objc
@@ -65,7 +94,8 @@ extension SwiftAudioPlayer {
     /// 오디오가 로드되어 있을 때만 동작.
     public func play() {
         if _state != .unload, _state != .play {
-            self.player?.play()
+            if _state == .finish { self.setSeek(0) } // 완료상태에서 플레이를 누르면, 처음부터 재생
+            self.player?.playImmediately(atRate: self.rate)
             changeState(state: .play)
         }
     }
@@ -137,21 +167,17 @@ extension SwiftAudioPlayer {
 extension SwiftAudioPlayer {
     /// 오디오 적재
     /// - Parameters:
-    ///   - isLocal: 로컬 or 스트리밍 여부
     ///   - urlString: 오디오 경로 (스트리밍 url 주소 or 로컬 주소)
-    ///   - metaData: 메타데이터 (개발중)
     ///   - seek: 0부터 시작하지 않을 때 설정
     ///   - duration: 전체 구간 강제 설정(미리듣기용)
     public func initItem(
-        isLocal: Bool,
         urlString: String,
-        metaData: AudioMetaData? = nil,
         seek: Int = 0,
         duration: Int? = nil
     ) {
         unload()
         
-        guard let item = makeAVPlayerItem(isLocal, urlString) else {
+        guard let item = makeAVPlayerItem(urlString) else {
             changeState(state: .unload)
             return
         }
@@ -163,16 +189,19 @@ extension SwiftAudioPlayer {
         
         if let duration = duration {
             self._duration = duration
+            self.observers.durationChangeSubject.onNext(Int(duration))
         } else {
             self._duration = 0
         }
+        
+        firstSetup()
         
         changeState(state: .load)
         
         self.playerTimeObserver = self.player?.addProgressObserver { [weak self] time in
             if self?._duration == 0 {
                 if let duration = self?.player?.currentItem?.duration.seconds,
-                    !duration.isNaN {
+                   !duration.isNaN {
                     self?._duration = Int(duration)
                     self?.observers.durationChangeSubject.onNext(Int(duration))
                 }
@@ -190,17 +219,71 @@ extension SwiftAudioPlayer {
             )
     }
     
-    private func makeAVPlayerItem(_ isLocal: Bool, _ urlString: String) -> AVPlayerItem? {
-        guard let url = isLocal ? URL(fileURLWithPath: urlString) : URL(string: urlString) else {
+    private func makeAVPlayerItem(_ urlString: String) -> AVPlayerItem? {
+        let url: URL?
+        if Array(urlString)[0].isLetter {
+            url = URL(string: urlString)
+        } else {
+            url = URL(fileURLWithPath: urlString)
+        }
+        
+        guard let url = url else {
             hlog(
                 l: .warn,
                 t: .player,
-                "플레이어 url 오류 - \(urlString)(\(isLocal ? "local" : "streaming"))"
+                "플레이어 url 오류 - \(urlString)"
             )
             return nil
         }
+        
         let item = AVPlayerItem(asset: AVAsset(url: url))
         
         return item
+    }
+}
+
+extension SwiftAudioPlayer {
+    @objc
+    private func handleAudioSessionInterruption(_ notification: Notification) {
+        guard state == .play || self.interrupt else { return }
+        
+        guard let userInfo = notification.userInfo as? [String: AnyObject] else { return }
+        
+        guard let rawInterruptionType =
+                userInfo[AVAudioSessionInterruptionTypeKey] as? NSNumber else { return }
+        
+        guard let interruptionType =
+                AVAudioSession.InterruptionType(rawValue: rawInterruptionType.uintValue) else {
+                    return
+                }
+        switch interruptionType {
+        case .began: // interruption started
+            pause()
+            self.interrupt = true
+        case .ended: // interruption ended
+            if let rawInterruptionOption =
+                userInfo[AVAudioSessionInterruptionOptionKey] as? NSNumber {
+                let interruptionOption =
+                AVAudioSession.InterruptionOptions(rawValue: rawInterruptionOption.uintValue)
+                if interruptionOption == .shouldResume {
+                    play()
+                    self.interrupt = false
+                }
+            }
+        default: break
+        }
+    }
+    
+    @objc
+    private func routeChange(_ notification: Notification) {
+        // 스피커 -> 블루투스 전환 시 재생 유지: O
+        // 블루투스 -> 스피커 전환 시 재생 유지 : X
+        // oldDeviceUnavailable <- 이전 오디오를 더이상 찾을 수 없을 때.
+        let oldDeviceUnavailable = AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue
+        if let userInfo = notification.userInfo,
+           let reason = userInfo[AVAudioSessionRouteChangeReasonKey] as? Int,
+           reason == oldDeviceUnavailable {
+            self.pause()
+        }
     }
 }

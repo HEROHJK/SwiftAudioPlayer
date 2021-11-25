@@ -9,6 +9,9 @@ class ViewController: UIViewController {
     @IBOutlet private weak var durationLabel: UILabel!
     @IBOutlet private weak var playButton: UIButton!
     @IBOutlet private weak var rateButton: UIButton!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet private weak var artistLabel: UILabel!
     var sliding = false
     let player = SwiftAudioPlayer()
     var remote: EasyRemoteCenter?
@@ -27,25 +30,49 @@ class ViewController: UIViewController {
     
     @IBAction private func streamingPlay(_ sender: Any) {
         player.initItem(
-            isLocal: false,
             // swiftlint:disable line_length
             urlString: "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa-audio-only.m3u8"
             // swiftlint:enable line_length
         )
         
-        if let image = UIImage(named: "cover")?.pngData() {
-            remote?.setMetaData(metaData: AudioMetaData(
-                imageData: image,
-                title: "TestTitle",
-                subTitle: "testSubTitle",
-                artist: "Artist")
-            )
-        }
         
-
+        
+        if let image = UIImage(named: "cover")?.pngData() {
+            let metaData = AudioMetaData(
+                imageData: image,
+                title: "StreamingM3U8",
+                subTitle: "None",
+                artist: "None Artist"
+            )
+            remote?.setMetaData(metaData: metaData)
+            
+            thumb.image = UIImage(data: image)
+            titleLabel.text = metaData.title
+            subTitleLabel.text = metaData.subTitle
+            artistLabel.text = metaData.artist
+        }
     }
     
-    @IBAction private func localPlay(_ sender: Any) { }
+    @IBAction private func localPlay(_ sender: Any) {
+        guard let url = Bundle.main.url(forResource: "sample", withExtension: "mp3") else { return }
+        player.initItem(urlString: url.path)
+        
+        if let image = UIImage(named: "cover")?.pngData() {
+            let metaData = AudioMetaData(
+                imageData: image,
+                title: "LocalMP3",
+                subTitle: "Sample",
+                artist: "None Artist"
+            )
+            
+            remote?.setMetaData(metaData: metaData)
+            
+            thumb.image = UIImage(data: image)
+            titleLabel.text = metaData.title
+            subTitleLabel.text = metaData.subTitle
+            artistLabel.text = metaData.artist
+        }
+    }
     
     @IBAction private func playAction(_ sender: Any) {
         if player.state == .play {

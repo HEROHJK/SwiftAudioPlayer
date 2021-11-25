@@ -1,17 +1,46 @@
-# AudioPlayer
+# SwiftAudioPlayer
 
-## 플레이어의 기능과 범위
+간단한 스트리밍/로컬 오디오 플레이어.
+다음과 같은 기능들을 지원합니다.
 
-### 기능
-* 오디오 재생(play) / 일시정지(pause) / 정지(stop)
-* 스트리밍(streaming) / 로컬파일(local) 지원
-* 메타데이터 설정 (iOS remoteCenter)
-* 상태변화에 따른 델리게이트
-  * RxSwift를 이용.
-  * 로드 / 언로드
-  * 재생
-  * 일시정지
-  * 정지
-  * 완료
-* 배속조절 (0.5 ~ 2)
-* Seeking
+* 간단한 Audio 제어
+* 간단한 MPRemoteCommandCenter 제어 (EasyRemoteCenter)
+* 배속 설정 (0.5 ~ 2.0)
+* 구간 이동
+* RxSwift를 이용한 상태 제어 옵저버
+    * `stateChange` -> 플레이어의 상태 제어
+        * `unload`, `load`, `play`, `pause`, `stop`, `finish`
+    * `currentTimeUpdate` -> 현재 구간 확인 (Progress용)
+    * `durationChange` -> 오디오 전체 길이 체크
+    * `rateChange` -> 배속 변경 알림
+* playlist 개발중..
+
+### 설치:
+* Swift Package Manager를 사용하여 추가.
+* `https://github.com/herohjk/swiftaudioplayer`
+* 해당 라이브러리는 (RxSwift(6.2.0))[https://github.com/ReactiveX/RxSwift]와 (HeLogger)[https://github.com/herohjk/HeLogger] 라이브러리가 의존성 패키지로 설정되어 있습니다.
+
+### 사용법:
+
+```Swift
+import SwiftAudioPlayer
+
+let player = SwiftAudioPlayer()
+
+player.observers.stateChange
+    .subscribe(
+        with: self,
+        onNext: { owner, state in
+            switch state {
+            case .load:
+                owner.player.play()
+            default:
+                break
+            }
+        }
+    )
+    .disposed(by: self.disposeBag)
+
+player.initItem(urlString: "audio url path")
+
+```
