@@ -1,5 +1,6 @@
 import UIKit
 import SwiftAudioPlayer
+import EasyRemoteCenter
 import RxSwift
 
 class ViewController: UIViewController {
