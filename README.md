@@ -21,7 +21,7 @@ The following features are supported.
 ### Installation:
 * Added using Swift Package Manager.
 * `https://github.com/herohjk/swiftaudioplayer`
-* The library [RxSwift (6.2.0)] (https://github.com/ReactiveX/RxSwift) and [HeLogger] (https://github.com/herohjk/HeLogger) libraries are set as dependency packages.
+* The library [RxSwift (6.2.0)](https://github.com/ReactiveX/RxSwift) and [HeLogger](https://github.com/herohjk/HeLogger) libraries are set as dependency packages.
 
 ### Usage:
 
