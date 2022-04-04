@@ -9,7 +9,7 @@ let package = Package(
         .iOS(.v12)
     ],
     products: [
-        .library(name: "AudioPlayer", targets: ["AudioPlayer"]),
+        .library(name: "SwiftAudioPlayer", targets: ["SwiftAudioPlayer"]),
         .library(name: "EasyRemoteCenter", targets: ["EasyRemoteCenter"])
     ],
     dependencies: [
@@ -18,12 +18,12 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "AudioPlayer",
+            name: "SwiftAudioPlayer",
             dependencies: ["RxSwift", "HeLogger"]),
         .target(name: "EasyRemoteCenter",
-                dependencies: ["AudioPlayer", "RxSwift", "HeLogger"]),
+                dependencies: ["SwiftAudioPlayer", "RxSwift", "HeLogger"]),
         .testTarget(
             name: "SwiftAudioPlayerTests",
-            dependencies: ["AudioPlayer"]),
+            dependencies: ["SwiftAudioPlayer"]),
     ]
 )
