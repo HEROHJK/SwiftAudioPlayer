@@ -105,7 +105,7 @@ public class EasyRemoteCenter {
             let artwork: MPMediaItemArtwork
             if #available(iOS 10.0, *) {
                 artwork = MPMediaItemArtwork(boundsSize: image.size) { _ -> UIImage in
-                    return image
+                    image
                 }
             } else {
                 artwork = MPMediaItemArtwork(image: image)
