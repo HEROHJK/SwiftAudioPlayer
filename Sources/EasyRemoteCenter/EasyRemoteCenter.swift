@@ -19,7 +19,7 @@ public class EasyRemoteCenter {
     private var skipFowardCommand: Any?
     private var skipBackwardCommand: Any?
     private var changePlaybackPositionCommand: Any?
-    private var player: SwiftAudioPlayer?
+    private var player: AudioPlayer?
     private var disposeBag = DisposeBag()
     
     public enum SetRemove {
@@ -27,7 +27,7 @@ public class EasyRemoteCenter {
         case remove
     }
     
-    public init(player: SwiftAudioPlayer) {
+    public init(player: AudioPlayer) {
         self.player = player
         self.player?.observers.durationChange.subscribe(with: self, onNext: { owner, duration  in
             owner.updateDuration(duration)
@@ -50,30 +50,29 @@ public class EasyRemoteCenter {
     }
     
     private func setRemoteCommandCenter(_ setUp: SetRemove) {
+        
         let rcc = MPRemoteCommandCenter.shared()
         if setUp == .setup {
-            playCommand = rcc.playCommand.addTarget { _ -> MPRemoteCommandHandlerStatus in
+            UIApplication.shared.beginReceivingRemoteControlEvents()
+            rcc.playCommand.addTarget { _ in
                 self.player?.play()
                 return .success
             }
-            pauseCommand = rcc.pauseCommand.addTarget { _ -> MPRemoteCommandHandlerStatus in
+            rcc.pauseCommand.addTarget { _ in
                 self.player?.pause()
                 return .success
             }
-            skipFowardCommand =
-            rcc.skipForwardCommand.addTarget { _ -> MPRemoteCommandHandlerStatus in
+            rcc.skipForwardCommand.addTarget { _ in
                 guard let currentTime = self.player?.currentTime else { return .commandFailed }
-                self.player?.setSeek(Double(currentTime + 10))
+                self.player?.setSeek(Double(currentTime + self.skipSeconds))
                 return .success
             }
-            skipBackwardCommand =
-            rcc.skipBackwardCommand.addTarget { _ -> MPRemoteCommandHandlerStatus in
+            rcc.skipBackwardCommand.addTarget { _ in
                 guard let currentTime = self.player?.currentTime else { return .commandFailed }
-                self.player?.setSeek(Double(currentTime - 10))
+                self.player?.setSeek(Double(currentTime - self.skipSeconds))
                 return .success
             }
-            changePlaybackPositionCommand =
-            rcc.changePlaybackPositionCommand.addTarget { event -> MPRemoteCommandHandlerStatus in
+            rcc.changePlaybackPositionCommand.addTarget { event in
                 guard let changeEvent = event as? MPChangePlaybackPositionCommandEvent else {
                     return .commandFailed
                 }
@@ -84,11 +83,7 @@ public class EasyRemoteCenter {
             }
             setSkipInterval()
         } else {
-            rcc.playCommand.removeTarget(playCommand)
-            rcc.pauseCommand.removeTarget(pauseCommand)
-            rcc.skipForwardCommand.removeTarget(skipFowardCommand)
-            rcc.skipBackwardCommand.removeTarget(skipBackwardCommand)
-            rcc.changePlaybackPositionCommand.removeTarget(changePlaybackPositionCommand)
+            UIApplication.shared.endReceivingRemoteControlEvents()
         }
         
         rcc.playCommand.isEnabled = setUp == .setup ? true : false

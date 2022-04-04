@@ -13,7 +13,7 @@ let timeScale: Int32 = 60_000
 /// 0.5~2.0 까지의 배속 조절
 ///
 /// 구간 이동 기능
-public class SwiftAudioPlayer {
+public class AudioPlayer {
     /// 플레이어의 현재 상태
     public var state: PlayerState { _state }
     /// 플레이어의 현재 배속
@@ -53,9 +53,9 @@ public class SwiftAudioPlayer {
         
         let audioSession = AVAudioSession.sharedInstance()
         
-        try? audioSession.setCategory(.playback)
-        try? audioSession.setCategory(AVAudioSession.Category.playback, options: .duckOthers)
-        try? audioSession.setMode(.default)
+        try? audioSession.setActive(false)
+        
+        try? audioSession.setCategory(.playback, mode: .default)
         try? audioSession.setActive(true)
         
         NotificationCenter.default
@@ -89,7 +89,7 @@ public class SwiftAudioPlayer {
 }
 
 // MARK: - Control
-extension SwiftAudioPlayer {
+extension AudioPlayer {
     /// 오디오 재생
     /// 오디오가 로드되어 있을 때만 동작.
     public func play() {
@@ -164,7 +164,7 @@ extension SwiftAudioPlayer {
 }
 
 // MARK: - initial
-extension SwiftAudioPlayer {
+extension AudioPlayer {
     /// 오디오 적재
     /// - Parameters:
     ///   - urlString: 오디오 경로 (스트리밍 url 주소 or 로컬 주소)
@@ -240,7 +240,7 @@ extension SwiftAudioPlayer {
     }
 }
 
-extension SwiftAudioPlayer {
+extension AudioPlayer {
     @objc
     private func handleAudioSessionInterruption(_ notification: Notification) {
         guard state == .play || self.interrupt else { return }
