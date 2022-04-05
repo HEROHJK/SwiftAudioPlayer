@@ -93,7 +93,7 @@ public class EasyRemoteCenter {
         rcc.changePlaybackPositionCommand.isEnabled = setUp == .setup ? true : false
     }
     
-    public func setMetaData(metaData: AudioMetaData) {
+    public func setMetaData(metaData: AudioPlayerData) {
         var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo ?? [String: Any]()
         
         nowPlayingInfo[MPMediaItemPropertyTitle] = metaData.title as AnyObject
@@ -101,7 +101,7 @@ public class EasyRemoteCenter {
         nowPlayingInfo[MPMediaItemPropertyArtist] = metaData.artist as AnyObject
         nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = metaData.subTitle as AnyObject
         
-        if let image = UIImage(data: metaData.imageData) {
+        if let data = metaData.imageData, let image = UIImage(data: data) {
             let artwork: MPMediaItemArtwork
             if #available(iOS 10.0, *) {
                 artwork = MPMediaItemArtwork(boundsSize: image.size) { _ -> UIImage in

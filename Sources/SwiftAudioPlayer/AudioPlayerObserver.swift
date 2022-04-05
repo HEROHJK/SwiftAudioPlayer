@@ -18,10 +18,19 @@ public class AudioPlayerObserver {
     internal var rateChangeSubject = BehaviorSubject<Float>(value: 1.0)
     
     /// 외부에 상태변화를 전달해주는 Observable
-    public var stateChange: Observable<PlayerState> { stateChangeSubject.asObservable() }
+    public var stateChange: Observable<PlayerState> {
+        stateChangeSubject
+            .asObservable()
+            .distinctUntilChanged()
+            .delay(.milliseconds(10), scheduler: MainScheduler.instance)
+    }
     
     /// 외부에 Progress용으로 현재 재생 시각을 전달해주는 Observable
-    public var currentTimeUpdate: Observable<Int> { currentTimeUpdateSubject.asObservable() }
+    public var currentTimeUpdate: Observable<Int> {
+        currentTimeUpdateSubject
+            .asObservable()
+            .distinctUntilChanged()
+    }
     
     /// 외부에 오디오 길이를 전달해주는 Observable
     /// 스트리밍 파일의 경우, 적재한 직후에 길이를 알수가 없기 때문에 이용
