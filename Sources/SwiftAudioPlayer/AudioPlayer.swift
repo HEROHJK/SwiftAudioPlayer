@@ -221,11 +221,17 @@ extension AudioPlayer {
     
     private func makePlayerItemURL(_ urlString: String) -> URL? {
         let url: URL?
-        if Array(urlString)[0].isLetter {
-            url = URL(string: urlString)
-        } else {
+        if urlString.contains("file://") || Array(urlString)[0] == "/" {
             url = URL(fileURLWithPath: urlString)
+        } else {
+            url = URL(string: urlString)
         }
+        
+//        if Array(urlString)[0].isLetter {
+//            url = URL(string: urlString)
+//        } else {
+//            url = URL(fileURLWithPath: urlString)
+//        }
         
         guard let url = url else {
             hlog(
