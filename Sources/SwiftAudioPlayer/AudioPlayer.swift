@@ -186,6 +186,8 @@ extension AudioPlayer {
         
         self.player = AVPlayer(playerItem: AVPlayerItem(asset: asset))
         
+        self.player?.automaticallyWaitsToMinimizeStalling = false
+        
         let cmTime = CMTimeMake(value: Int64(seek), timescale: timeScale)
         self.player?.seek(to: cmTime)
         
