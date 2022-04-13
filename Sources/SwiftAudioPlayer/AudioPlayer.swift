@@ -30,6 +30,17 @@ public class AudioPlayer {
         }
         return 0
     }
+    /// 자동 재생 지연
+    public var automaticallyWaitsToMinimizeStalling: Bool? {
+        get {
+            return player?.automaticallyWaitsToMinimizeStalling
+        }
+        set(value) {
+            if let value = value {
+                player?.automaticallyWaitsToMinimizeStalling = value
+            }
+        }
+    }
     
     private var player: AVPlayer?
     private var playerTimeObserver: Any?
@@ -186,8 +197,6 @@ extension AudioPlayer {
         
         self.player = AVPlayer(playerItem: AVPlayerItem(asset: asset))
         
-        self.player?.automaticallyWaitsToMinimizeStalling = false
-        
         let cmTime = CMTimeMake(value: Int64(seek), timescale: timeScale)
         self.player?.seek(to: cmTime)
         
@@ -228,12 +237,6 @@ extension AudioPlayer {
         } else {
             url = URL(string: urlString)
         }
-        
-//        if Array(urlString)[0].isLetter {
-//            url = URL(string: urlString)
-//        } else {
-//            url = URL(fileURLWithPath: urlString)
-//        }
         
         guard let url = url else {
             hlog(
